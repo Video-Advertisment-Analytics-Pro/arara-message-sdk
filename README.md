@@ -1,15 +1,52 @@
 # arara-message-sdk
 
-To install dependencies:
+TypeScript SDK for Arara Message API v2.
+
+## Install
 
 ```bash
 bun install
 ```
 
-To run:
+## Quick Start
 
-```bash
-bun run src/index.ts
+```ts
+import { AraraMessageClient } from "./src/index";
+
+const client = new AraraMessageClient({
+  host: "https://{HOST}",
+});
+
+const token = await client.issueAccessToken({
+  clientId: process.env.ARARA_CLIENT_ID!,
+  clientSecret: process.env.ARARA_CLIENT_SECRET!,
+});
+
+console.log(token.access_token);
 ```
 
-This project was created using `bun init` in bun v1.3.11. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+## Main APIs
+
+- `client.auth.issueAccessToken(...)`
+- `client.delivery.reserve(...)`
+- `client.delivery.cancel(...)`
+- `client.delivery.getStatusByDeliveryId(...)`
+- `client.delivery.getResultByDeliveryId(...)`
+- `client.errorFilter.lookup(...)`
+- `client.errorFilter.update(...)`
+- `client.domain.registerDkim(...)`
+- `client.domain.listDomains(...)`
+- `client.domain.updateDkim(...)`
+- `client.domain.deleteDkim(...)`
+- `client.contract.getPlan()`
+- `client.contract.getDeliveryRecord(...)`
+- `client.unsubscribe.setReceiver(...)`
+- `client.unsubscribe.listAutoAssigned(...)`
+- `client.unsubscribe.listClientAssigned(...)`
+- `client.unsubscribe.resubscribe(...)`
+
+## Type Check
+
+```bash
+bunx tsc --noEmit
+```
