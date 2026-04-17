@@ -32,7 +32,6 @@
   ],
   "scripts": {
     "build": "tsdown src/index.ts --format esm --format cjs --dts --clean",
-    "prepare": "npm run build",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
