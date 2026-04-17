@@ -1,13 +1,38 @@
 {
   "name": "arara-message-sdk",
   "version": "0.1.0",
-  "module": "src/index.ts",
+  "description": "TypeScript SDK for Arara Message API v2.",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
   "type": "module",
-  "exports": {
-    ".": "./src/index.ts"
+  "engines": {
+    "node": ">=20.19.0"
   },
-  "types": "./src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Video-Advertisment-Analytics-Pro/arara-message-sdk.git"
+  },
+  "homepage": "https://github.com/Video-Advertisment-Analytics-Pro/arara-message-sdk",
+  "bugs": {
+    "url": "https://github.com/Video-Advertisment-Analytics-Pro/arara-message-sdk/issues"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "types": "./dist/index.d.mts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
+    "build": "tsdown src/index.ts --format esm --format cjs --dts --clean",
+    "prepare": "npm run build",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -16,9 +41,8 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
+    "tsdown": "^0.21.9",
+    "typescript": "^5.9.3",
     "vitest": "^4.1.4"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
   }
 }
